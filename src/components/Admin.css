@@ -1,0 +1,104 @@
+.admin-page-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fffde4 100%);
+}
+.admin-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(24,90,157,0.13);
+  padding: 2.5rem 2rem 2.5rem 2rem;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: fadeInUp 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.admin-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #43cea2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.admin-brand span {
+  font-family: 'Pacifico', cursive;
+  color: #185a9d;
+}
+.admin-card h2 {
+  font-size: 1.5rem;
+  color: #185a9d;
+  margin-bottom: 0.5rem;
+}
+.admin-summary {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #185a9d;
+}
+.admin-table-container {
+  overflow-x: auto;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px rgba(24,90,157,0.07);
+  overflow: hidden;
+}
+.admin-table th, .admin-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+.admin-table th {
+  background: #e0f7fa;
+  color: #185a9d;
+  font-weight: 700;
+}
+.admin-table tr:nth-child(even) {
+  background: #f1f8e9;
+}
+.admin-table button {
+  background: #43cea2;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.4rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+.admin-table button:hover {
+  background: #185a9d;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 700px) {
+  .admin-card {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .admin-summary {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  .admin-table th, .admin-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.95rem;
+  }
+} 

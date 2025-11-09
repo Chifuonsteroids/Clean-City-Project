@@ -1,0 +1,105 @@
+.notification-bell {
+  position: relative;
+  display: inline-block;
+}
+.notification-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.notification-button:hover {
+  background: rgba(67,206,162,0.1);
+}
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(24,90,157,0.15);
+  min-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e0f7fa;
+}
+.notification-header h3 {
+  margin: 0;
+  color: #185a9d;
+  font-size: 1.1rem;
+}
+.notification-header button {
+  background: #43cea2;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.notification-header button:hover {
+  background: #185a9d;
+}
+.notification-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.notification-item {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #f1f8e9;
+  transition: background 0.2s;
+}
+.notification-item:hover {
+  background: #f1f8e9;
+}
+.notification-item.unread {
+  background: #e0f7fa;
+}
+.notification-text {
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+.notification-time {
+  color: #43cea2;
+  font-size: 0.85rem;
+}
+.notification-empty {
+  padding: 1rem;
+  text-align: center;
+  color: #bdbdbd;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .notification-dropdown {
+    min-width: 250px;
+    right: -50px;
+  }
+} 

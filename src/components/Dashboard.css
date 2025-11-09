@@ -1,0 +1,112 @@
+.dashboard-page-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fffde4 100%);
+}
+.dashboard-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(24,90,157,0.13);
+  padding: 2.5rem 2rem 2.5rem 2rem;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: fadeInUp 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.dashboard-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #43cea2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.dashboard-brand span {
+  font-family: 'Pacifico', cursive;
+  color: #185a9d;
+}
+.dashboard-card h2 {
+  font-size: 1.5rem;
+  color: #185a9d;
+  margin-bottom: 0.5rem;
+}
+.dashboard-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.dashboard-stat {
+  background: #e0f7fa;
+  border-radius: 1.2rem;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.08);
+}
+.stat-label {
+  display: block;
+  color: #185a9d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #43cea2;
+}
+.dashboard-charts {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dashboard-chart {
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  min-width: 320px;
+  box-shadow: 0 2px 8px rgba(24,90,157,0.07);
+  margin-bottom: 2rem;
+}
+.dashboard-leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+.dashboard-leaderboard li {
+  background: #e0f7fa;
+  border-radius: 0.7rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 700px) {
+  .dashboard-card {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .dashboard-stats, .dashboard-charts {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .dashboard-chart {
+    min-width: 0;
+    width: 100%;
+  }
+} 

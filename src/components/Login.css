@@ -1,0 +1,96 @@
+.login-page-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fffde4 100%);
+}
+.login-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(24,90,157,0.13);
+  padding: 2.5rem 2rem 2.5rem 2rem;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: fadeInUp 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.login-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #43cea2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.login-brand span {
+  font-family: 'Pacifico', cursive;
+  color: #185a9d;
+}
+.login-card h2 {
+  font-size: 1.5rem;
+  color: #185a9d;
+  margin-bottom: 0.5rem;
+}
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.login-card label {
+  text-align: left;
+  color: #185a9d;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+.login-card input {
+  padding: 0.7rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #43cea2;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 0.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.login-card input:focus {
+  border-color: #185a9d;
+  box-shadow: 0 0 0 2px #e0f7fa;
+}
+.login-error {
+  color: #ff6b6b;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.login-btn {
+  background: #43cea2;
+  color: #fff;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.login-btn:hover,
+.login-btn:focus {
+  background: #185a9d;
+  transform: translateY(-2px);
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 500px) {
+  .login-card {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+} 

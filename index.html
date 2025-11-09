@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanCity: Waste Pickup Scheduler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">CleanCity</div>
+                <ul class="navbar-nav" id="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li id="auth-links">
+                        <a href="#" class="nav-link" data-page="login">Login</a>
+                        <a href="#" class="nav-link" data-page="register">Register</a>
+                    </li>
+                    <li id="user-links" style="display: none;">
+                        <a href="#" class="nav-link" data-page="dashboard">Dashboard</a>
+                        <a href="#" class="nav-link" data-page="feedback">Feedback</a>
+                        <a href="#" class="nav-link" data-page="admin" id="admin-link" style="display: none;">Admin</a>
+                        <a href="#" class="nav-link" id="logout-btn">Logout</a>
+                    </li>
+                    <li><a href="#" class="nav-link" data-page="awareness">Awareness</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- User Info -->
+        <div id="user-info" class="user-info" style="display: none;">
+            <span id="welcome-text">Welcome, User</span>
+            <span id="admin-badge" class="admin-badge" style="display: none;">Admin</span>
+        </div>
+
+        <div class="container">
+            <!-- Login Page -->
+            <div id="login-page" class="page">
+                <h1 class="page-title">Login to CleanCity</h1>
+                
+                <div class="card">
+                    <h2>User Authentication</h2>
+                    <p>Sign in to access your account and manage waste pickup requests.</p>
+                </div>
+
+                <div id="login-error" class="alert alert-danger" style="display: none;"></div>
+                <div id="login-success" class="alert alert-success" style="display: none;"></div>
+
+                <div class="card form-container">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email Address *</label>
+                            <input type="email" id="login-email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password *</label>
+                            <input type="password" id="login-password" name="password" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Demo Accounts</h3>
+                    <p>Use these accounts for testing:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4>Regular User</h4>
+                            <p><strong>Email:</strong> user@cleancity.com</p>
+                            <p><strong>Password:</strong> password123</p>
+                        </div>
+                        <div>
+                            <h4>Admin User</h4>
+                            <p><strong>Email:</strong> admin@cleancity.com</p>
+                            <p><strong>Password:</strong> admin123</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <p>
+                        Don't have an account? <a href="#" class="text-primary" data-page="register">Register here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Register Page -->
+            <div id="register-page" class="page" style="display: none;">
+                <h1 class="page-title">Register for CleanCity</h1>
+                
+                <div class="card">
+                    <h2>Create Account</h2>
+                    <p>Join CleanCity to schedule waste pickup services and manage your requests.</p>
+                </div>
+
+                <div id="register-error" class="alert alert-danger" style="display: none;"></div>
+                <div id="register-success" class="alert alert-success" style="display: none;"></div>
+
+                <div class="card form-container">
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Full Name *</label>
+                            <input type="text" id="register-name" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email">Email Address *</label>
+                            <input type="email" id="register-email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password">Password *</label>
+                            <input type="password" id="register-password" name="password" class="form-control" required>
+                            <small class="text-muted">Password must be at least 3 characters long</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password *</label>
+                            <input type="password" id="register-confirm-password" name="confirmPassword" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Security Notice</h3>
+                    <p>This is a demo application for educational purposes. In a real application, passwords would be:</p>
+                    <ul>
+                        <li>Hashed using secure algorithms (bcrypt, Argon2)</li>
+                        <li>Validated with stronger requirements</li>
+                        <li>Protected against common attacks</li>
+                        <li>Stored securely in a database</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <p>
+                        Already have an account? <a href="#" class="text-primary" data-page="login">Login here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Home Page -->
+            <div id="home-page" class="page" style="display: none;">
+                <h1 class="page-title">CleanCity: Waste Pickup Scheduler</h1>
+                
+                <div class="card">
+                    <h2>Request Waste Pickup</h2>
+                    <p>Schedule your waste collection service in your city. Please provide all required information to ensure timely pickup.</p>
+                </div>
+
+                <div id="success-message" class="alert alert-success" style="display: none;">
+                    <strong>Request Submitted Successfully!</strong> Your waste pickup request has been received. 
+                    We'll contact you soon to confirm the details.
+                </div>
+
+                <div class="card form-container">
+                    <form id="pickup-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name" required>
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <select id="location" name="location" class="form-control" required>
+                                <option value="">Select your city</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Eldoret">Eldoret</option>
+                            </select>
+                            <div class="error-message" id="location-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Waste Type *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="wasteType" value="General" required> General</label>
+                                <label><input type="radio" name="wasteType" value="Recyclable" required> Recyclable</label>
+                                <label><input type="radio" name="wasteType" value="Hazardous" required> Hazardous</label>
+                            </div>
+                            <div class="error-message" id="waste-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Pickup Date</label>
+                            <input type="date" id="preferredDate" name="preferredDate" class="form-control">
+                            <small class="text-muted">Select your preferred pickup date (optional)</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>How it works:</h3>
+                    <ol>
+                        <li>Fill out the form above with your details</li>
+                        <li>Select your preferred pickup date</li>
+                        <li>Submit your request</li>
+                        <li>We'll contact you to confirm the pickup schedule</li>
+                        <li>Track your request status in the Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page" style="display: none;">
+                <h1 class="page-title">Pickup Requests Dashboard</h1>
+
+                <div class="card">
+                    <h2>All Pickup Requests</h2>
+                    <p>View and track the status of all waste pickup requests. Use the filters below to find specific requests.</p>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Filter Requests</h3>
+                    <div class="filter-controls">
+                        <div>
+                            <label for="statusFilter">Filter by Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Missed">Missed</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="locationFilter">Filter by Location:</label>
+                            <select id="locationFilter">
+                                <option value="all">All Locations</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Eldoret">Eldoret</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="filter-count" style="margin-top: 10px; font-size: 14px; color: #666;">
+                        Showing all requests
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="overflow-x: auto;">
+                        <table class="table" id="requests-table">
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Waste Type</th>
+                                    <th>Preferred Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="requests-tbody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Page -->
+            <div id="feedback-page" class="page" style="display: none;">
+                <h1 class="page-title">Report Missed Pickup</h1>
+                
+                <div class="card">
+                    <h2>Feedback Form</h2>
+                    <p>Report missed pickups or provide feedback about our service. Your feedback helps us improve our operations.</p>
+                </div>
+
+                <div id="feedback-success" class="alert alert-success" style="display: none;">
+                    <strong>Thank you for your feedback!</strong> We have received your report and will investigate the issue.
+                </div>
+
+                <div class="card form-container">
+                    <form id="feedback-form">
+                        <div class="form-group">
+                            <label for="requestId">Request ID *</label>
+                            <input type="text" id="requestId" name="requestId" class="form-control" placeholder="e.g., REQ001" required>
+                            <div class="error-message" id="requestId-error"></div>
+                            <small class="text-muted">Enter the request ID from your pickup request</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason">Reason *</label>
+                            <select id="reason" name="reason" class="form-control" required>
+                                <option value="">Select a reason</option>
+                                <option value="Missed Pickup">Missed Pickup</option>
+                                <option value="Incomplete Pickup">Incomplete Pickup</option>
+                                <option value="Wrong Date">Wrong Date</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="error-message" id="reason-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Please provide additional details about the issue..."></textarea>
+                            <small class="text-muted">Additional details help us better understand and resolve the issue</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Sample Request IDs for Reference:</h3>
+                    <ul>
+                        <li>REQ001 - John Doe (Nairobi)</li>
+                        <li>REQ002 - Jane Smith (Kisumu)</li>
+                        <li>REQ003 - Mike Johnson (Mombasa)</li>
+                        <li>REQ004 - Sarah Wilson (Eldoret)</li>
+                        <li>REQ005 - David Brown (Nairobi)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Awareness Page -->
+            <div id="awareness-page" class="page" style="display: none;">
+                <h1 class="page-title">Waste Management Awareness</h1>
+                
+                <div class="card">
+                    <h2>Educational Resources</h2>
+                    <p>Learn about proper waste management practices and the importance of keeping our cities clean. Understanding these concepts helps create a sustainable environment for future generations.</p>
+                </div>
+
+                <div class="awareness-grid">
+                    <div class="awareness-card">
+                        <h3>Proper Waste Sorting</h3>
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=200&fit=crop">
+                        <p>
+                            Proper waste sorting is crucial for effective recycling and waste management. 
+                            Separate your waste into the following categories:
+                        </p>
+                        <ul>
+                            <li><strong>General Waste:</strong> Non-recyclable household waste</li>
+                            <li><strong>Recyclable:</strong> Paper, plastic, glass, and metal</li>
+                            <li><strong>Hazardous:</strong> Batteries, chemicals, and electronic waste</li>
+                        </ul>
+                        <p>
+                            Always rinse recyclable containers before disposal and ensure hazardous 
+                            materials are properly contained.
+                        </p>
+                    </div>
+
+                    <div class="awareness-card">
+                        <h3>Health Hazards of Unmanaged Waste</h3>
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop">
+                        <p>
+                            Improper waste management poses serious health risks to communities:
+                        </p>
+                        <ul>
+                            <li>Spread of diseases through contaminated water and soil</li>
+                            <li>Air pollution from burning waste</li>
+                            <li>Attraction of pests and vermin</li>
+                            <li>Contamination of food sources</li>
+                            <li>Respiratory problems from toxic fumes</li>
+                        </ul>
+                        <p>
+                            Regular waste collection and proper disposal help prevent these health hazards 
+                            and maintain a clean, safe environment for everyone.
+                        </p>
+                    </div>
+
+                    <div class="awareness-card">
+                        <h3>Environmental Impact</h3>
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop">
+                        <p>
+                            The environmental consequences of poor waste management are far-reaching:
+                        </p>
+                        <ul>
+                            <li>Water pollution affecting marine life</li>
+                            <li>Soil contamination reducing agricultural productivity</li>
+                            <li>Greenhouse gas emissions contributing to climate change</li>
+                            <li>Destruction of natural habitats</li>
+                            <li>Accumulation of non-biodegradable materials</li>
+                        </ul>
+                        <p>
+                            By participating in proper waste management programs, you contribute to 
+                            environmental conservation and sustainable development.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Best Practices for Waste Management</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4>Reduce</h4>
+                            <ul>
+                                <li>Buy products with minimal packaging</li>
+                                <li>Use reusable containers and bags</li>
+                                <li>Choose products with longer lifespans</li>
+                                <li>Compost organic waste at home</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4>Reuse</h4>
+                            <ul>
+                                <li>Repair items instead of replacing them</li>
+                                <li>Donate usable items to others</li>
+                                <li>Use containers for multiple purposes</li>
+                                <li>Buy second-hand when possible</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4>Recycle</h4>
+                            <ul>
+                                <li>Separate recyclable materials properly</li>
+                                <li>Check local recycling guidelines</li>
+                                <li>Clean items before recycling</li>
+                                <li>Support recycling programs in your community</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Contact Information</h3>
+                    <p>
+                        For more information about waste management in your area, contact your local 
+                        waste management authority or visit our website for additional resources.
+                    </p>
+                    <p>
+                        <strong>Emergency Hotline:</strong> 0800-WASTE-HELP<br>
+                        <strong>Email:</strong> info@cleancity.gov.ke<br>
+                        <strong>Website:</strong> www.cleancity.gov.ke
+                    </p>
+                </div>
+            </div>
+
+            <!-- Admin Page -->
+            <div id="admin-page" class="page" style="display: none;">
+                <h1 class="page-title">Admin Panel</h1>
+                
+                <div class="card">
+                    <h2>Manage Pickup Requests</h2>
+                    <p>Administrative interface for managing waste pickup requests. Update request statuses and monitor system activity.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Update Request Status</h3>
+                    <div class="admin-controls">
+                        <div>
+                            <label for="requestSelect">Select Request:</label>
+                            <select id="requestSelect">
+                                <option value="">Choose a request...</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="statusSelect">New Status:</label>
+                            <select id="statusSelect">
+                                <option value="">Select status...</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Missed">Missed</option>
+                            </select>
+                        </div>
+
+                        <button id="updateStatusBtn" class="btn btn-primary" disabled>
+                            Update Status
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>All Requests</h3>
+                    <div style="overflow-x: auto;">
+                        <table class="table" id="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Waste Type</th>
+                                    <th>Preferred Date</th>
+                                    <th>Current Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-tbody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>System Statistics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div class="stat-card">
+                            <h4>Total Requests</h4>
+                            <div class="stat-number" id="totalRequests">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Pending</h4>
+                            <div class="stat-number" id="pendingRequests">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Scheduled</h4>
+                            <div class="stat-number" id="scheduledRequests">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Completed</h4>
+                            <div class="stat-number" id="completedRequests">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
