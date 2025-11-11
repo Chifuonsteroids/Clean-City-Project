@@ -4,6 +4,6 @@ test("valid submission stores request in localStorage", () => {
   fireEvent.change(screen.getByLabelText(/Location/i), { target: { value: "Nairobi" } });
   fireEvent.click(screen.getByLabelText(/General/i));
   fireEvent.click(screen.getByText(/Submit Request/i));
-  const stored = JSON.parse(window.localStorage.getItem("pickupRequests"));
+  const stored = JSON.parse(globalThis.localStorage.getItem("pickupRequests"));
   expect(stored.length).toBeGreaterThan(0);
 });
